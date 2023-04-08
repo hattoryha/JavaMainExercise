@@ -1,26 +1,42 @@
-import entity.Student;
-import handle.StudentHandle;
-import view.Menu;
+import entity.Product;
+import handle.ProductHandle;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        ProductHandle productHandle = new ProductHandle();
         Scanner scanner = new Scanner(System.in);
-        Menu menu = new Menu();
-        menu.selectType(scanner);
-
-        System.out.println("Mời b nhập số lượng student muốn tạo: ");
+        System.out.println("Mời b nhập số lượng sản phẩm muốn tạo ra: ");
         int n = Integer.parseInt(scanner.nextLine());
-        Student[] students = new Student[n];
-        StudentHandle studentHandle = new StudentHandle();
+        Product[] products = new Product[n];
 
+        // Create products and add to array
         for (int i = 0; i < n; i++) {
-            Student student = studentHandle.createStudent(scanner, i);
-            // Lưu student vào trong array
-            students[i] = student;
+            Product product = productHandle.createProduct(scanner, i);
+            products[i] = product;
         }
 
-        System.out.println("Điểm tb là: "+studentHandle.getAVGScore(students[0]));
+        //Display all products
+        productHandle.displayAllProducts(products);
+
+        // find by name
+        System.out.println("Mời b nhập tên sp muốn tìm: ");
+        String name = scanner.nextLine();
+        //productHandle.findProductByName(products, name);
+
+        // FindByID
+        System.out.println("Mời b nhập id: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        Product product = productHandle.findById(products, id);
+        System.out.println(product);
+
+        // Update sản phẩm:
+        System.out.println("Mời b nhập tên sp muốn update: ");
+        String nameNew = scanner.nextLine();
+        boolean checkUpdate = productHandle.updateProductById(product, nameNew);
+        if(checkUpdate){
+            System.out.println("Update thanh công");
+        } else System.out.println("Không tìm thấy sản phẩm update");
     }
 }
