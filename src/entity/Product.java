@@ -19,6 +19,12 @@ public class Product {
         this.name = name;
     }
 
+    public Product(String name, double price) {
+        this.id = ++autoId;
+        this.name = name;
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,6 +42,7 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

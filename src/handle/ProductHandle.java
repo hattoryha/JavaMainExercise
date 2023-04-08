@@ -9,7 +9,9 @@ public class ProductHandle {
     public Product createProduct(Scanner scanner, int i){
         System.out.println("Mời b nhập vào tên sp thứ "+(i+1));
         String name = scanner.nextLine();
-        return new Product(name);
+        System.out.println("Nhập giá: ");
+        double price = Double.parseDouble(scanner.nextLine());
+        return new Product(name, price);
     }
 
     public void displayAllProducts(Product[] products){
@@ -54,6 +56,25 @@ public class ProductHandle {
         for (Product p: products) {
             if(p.getPrice()<50000 && option==1) System.out.println(p);
             //else if () ToDO
+        }
+    }
+
+    public void sortByPrice(Product[] products){
+        for (int i = 0; i < products.length; i++) {
+            for (int j = 0; j < products.length -1; j++) {
+                if(products[j].getPrice()> products[j+1].getPrice()){
+                    Product temp =  products[j];
+                    //a[0] = 0
+                    products[j] = products[j+1];
+                    //a[1] = 1
+                    products[j+1] = temp;
+                }
+            }
+        }
+        System.out.println("After Sorting: ");
+        for (Product p : products
+             ) {
+            System.out.println(p);
         }
     }
 }
