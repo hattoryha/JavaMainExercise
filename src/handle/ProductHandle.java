@@ -49,4 +49,11 @@ public class ProductHandle {
             return true;
         }
     }
+
+    public void filterByPrice(Product[] products, int option){
+        for (Product p: products) {
+            if(p.getPrice()<50000 && option==1) System.out.println(p);
+            //else if () ToDO
+        }
+    }
 }

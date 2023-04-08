@@ -4,6 +4,15 @@ public class Product {
     private static int autoId;
     private int id;
     private String name;
+    private double price;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public Product(String name) {
         this.id = ++autoId;

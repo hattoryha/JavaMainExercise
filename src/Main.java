@@ -1,5 +1,6 @@
 import entity.Product;
 import handle.ProductHandle;
+import view.Menu;
 
 import java.util.Scanner;
 
@@ -38,5 +39,9 @@ public class Main {
         if(checkUpdate){
             System.out.println("Update thanh công");
         } else System.out.println("Không tìm thấy sản phẩm update");
+
+        Menu menu = new Menu();
+        int option = menu.menuSelectByPrice(scanner, products);
+        productHandle.filterByPrice(products, option);
     }
 }
