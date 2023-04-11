@@ -1,27 +1,37 @@
-import entity.Product;
-import handle.ProductHandle;
-import view.Menu;
+import entity.*;
+import handle.IdolHandle;
+import handle.MemberHandle;
+import handle.SongHandle;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        ProductHandle productHandle = new ProductHandle();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Mời b nhập số lượng sản phẩm muốn tạo ra: ");
-        int n = Integer.parseInt(scanner.nextLine());
-        Product[] products = new Product[n];
+        ArrayList<Song> songs = new ArrayList<>();
+        ArrayList<Idol> idols = new ArrayList<>();
 
-        // Create products and add to array
-        for (int i = 0; i < n; i++) {
-            Product product = productHandle.createProduct(scanner, i);
-            products[i] = product;
+        System.out.println("Mời b nhập số lượng bài hát muốn tọ ra");
+        int numberOfSong = Integer.parseInt(scanner.nextLine());
+
+        //Khởi tạo giá trị cho danh sách các bài hát
+        SongHandle songHandle = new SongHandle();
+        for (int i = 0; i < numberOfSong; i++) {
+            Song song = songHandle.inputSong(scanner);
+            songs.add(song);
         }
 
-        //Display all products
-        productHandle.displayAllProducts(products);
+        // Khởi tạo danh sách các idol
+        System.out.println("Mời b nhập số lượng các idol muốn taọ ra");
+        int numberOfIdol = Integer.parseInt(scanner.nextLine());
+        IdolHandle idolHandle = new IdolHandle();
+        for (int i = 0; i < numberOfIdol; i++) {
+            Idol idol = idolHandle.inputIdol(scanner);
+            idols.add(idol);
+        }
 
-        // sort by price
-        productHandle.sortByPrice(products);
+        Tiktok tiktok = new Tiktok(idols, songs);
+        System.out.println(tiktok);
+
     }
 }
