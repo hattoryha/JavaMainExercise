@@ -78,7 +78,7 @@ public class Menu {
                     case 1:
                         continue;
                     case 2:
-                        forgotPasswordMenu();
+                        forgotPasswordMenu(scanner,allUser);
                         break;
                     default:
                         System.out.println("Invalid choice");
@@ -87,6 +87,21 @@ public class Menu {
             }
         } while (choice!=2);
 
+    }
+    public static void forgotPasswordMenu(Scanner scanner,AllUser allUser){
+        do {
+            System.out.print("Enter email: ");
+            String email = scanner.nextLine();
+            for (User user:
+                    allUser.getUsers()) {
+                if (user.getEmail().equals(email)){
+                    System.out.println("Insert new password");
+                    String newPassword = scanner.nextLine();
+                    user.setPassword(newPassword);
+                } else System.out.println("email does not exists, try to enter your email again");
+            }
+
+        } while (true);
     }
 
 //
